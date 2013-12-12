@@ -5,6 +5,8 @@
  * You should have received a copy of The MIT License in LICENSE.txt with this file.
  */
 
+namespace proauth;
+
 require_once _OAUTH2_LIB_DIR . 'OAuthXShared.php';
 
 

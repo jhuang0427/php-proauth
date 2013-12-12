@@ -5,6 +5,8 @@
  * You should have received a copy of The MIT License in LICENSE.txt with this file.
  */
 
+namespace proauth;
+
 /**
  * Defines an abstract base class (OAuthSignatureMethod) that
  * can be used for OAuth signature calculation and comparison.

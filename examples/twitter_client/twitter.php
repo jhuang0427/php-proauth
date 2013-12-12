@@ -3,6 +3,8 @@
  * This example code is hereby released into Public Domain.
  */
 
+use proauth;
+
 $_config = array(
 	/* get your own consumer key + secret at http://twitter.com/oauth */
 	'key' => '',

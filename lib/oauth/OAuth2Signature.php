@@ -5,6 +5,7 @@
  * You should have received a copy of The MIT License in LICENSE.txt with this file.
  */
 
+namespace proauth;
 
 /**
  * The base class that all signature method classes have to be derived from.

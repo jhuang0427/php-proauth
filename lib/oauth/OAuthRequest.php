@@ -5,6 +5,8 @@
  * You should have received a copy of The MIT License in LICENSE.txt with this file.
  */
 
+namespace proauth;
+
 /**
  * Class that wraps a request to an OAuth enabled API...
  * Will be used by OAuth clients/consumers and servers.

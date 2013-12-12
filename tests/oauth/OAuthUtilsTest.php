@@ -3,6 +3,8 @@
 require_once '../../lib/oauth/OAuthUtil.php';
 require_once 'PHPUnit/Framework.php';
 
+use proauth;
+
 class OAuthUtilsTest extends PHPUnit_Framework_TestCase
 {
 	public function testGetIfSet()

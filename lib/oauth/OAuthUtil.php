@@ -5,9 +5,11 @@
  * You should have received a copy of The MIT License in LICENSE.txt with this file.
  */
 
+namespace proauth;
+
 require_once _OAUTH_LIB_DIR . 'OAuthXShared.php';
 
-class OAuthException extends Exception
+class OAuthException extends \Exception
 {
 	protected $http_status_code;
 	protected $oauth_problem, $oauth_problem_extra_info;

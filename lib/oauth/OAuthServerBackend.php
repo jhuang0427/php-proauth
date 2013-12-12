@@ -1,5 +1,7 @@
 <?php
 
+namespace proauth;
+
 abstract class OAuthServerBackend
 {
 	const RESULT_ERROR = -1;

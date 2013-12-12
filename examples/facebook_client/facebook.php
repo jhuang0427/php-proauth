@@ -3,6 +3,8 @@
  * This example code is hereby released into Public Domain.
  */
 
+use proauth;
+
 $_config = array(
 	/* get your own app key + secret at http://www.facebook.com/developers */
 	'key' => '', /* App ID, not API key! */
