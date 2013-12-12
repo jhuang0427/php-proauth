@@ -10,7 +10,7 @@ namespace proauth;
 require_once _OAUTH2_LIB_DIR . 'OAuthXShared.php';
 
 
-class OAuth2Exception extends Exception
+class OAuth2Exception extends \Exception
 {
 	protected $error_idf;
 
