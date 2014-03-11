@@ -107,8 +107,8 @@ abstract class OAuthClientBase
 	 **/
 	public function _getTempToken($request_token_url, array $params = array(), $assume_www_encoded = false)
 	{
-		// :TODO: We only support GET for request_temp_token...
-		$req = $this->createGetRequest($request_token_url, $params);
+		// :TODO: We only support POST for request_temp_token...
+		$req = $this->createPostRequest($request_token_url, $params);
 
 		$response = $this->executeRequest($req);
 
@@ -251,6 +251,10 @@ class OAuthClientRequest extends OAuthRequest
 		{
 			throw new OAuthException('Signing the request completely and utterly failed.');
 		}
+
+    // Add the OAuth params to the POST params in case we need them there. 
+    // Won't affect GET call.
+    $this->params_post += $this->params_oauth;
 
 		$this->signed = true;
 	}
@@ -491,7 +495,7 @@ class OAuthClientResponse
 		$body = '';
 		$status_code = 0;
 
-		OAuthShared::splitHttpResponse('OAuthException', $complete_response_str, $headers, $body, $status_code);
+		OAuthShared::splitHttpResponse('proauth\OAuthException', $complete_response_str, $headers, $body, $status_code);
 		unset($complete_response_str);
 
 		return new self($client, $headers, $body, $status_code);

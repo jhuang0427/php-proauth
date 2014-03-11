@@ -499,7 +499,7 @@ class OAuth2AccessTokenObtainer
 		$body = '';
 		$status_code = 0;
 
-		OAuthShared::splitHttpResponse('OAuth2Exception', $http_response, $headers, $body, $status_code);
+		OAuthShared::splitHttpResponse('proauth\OAuth2Exception', $http_response, $headers, $body, $status_code);
 		unset($http_response);
 
 		if($status_code != 200)
@@ -699,7 +699,7 @@ class OAuth2ClientResponse
 		$body = '';
 		$status_code = 0;
 
-		OAuthShared::splitHttpResponse('OAuth2Exception', $complete_response_str, $headers, $body, $status_code);
+		OAuthShared::splitHttpResponse('proauth\OAuth2Exception', $complete_response_str, $headers, $body, $status_code);
 		unset($complete_response_str);
 
 		return new self($headers, $body, $status_code);
