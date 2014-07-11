@@ -105,10 +105,14 @@ abstract class OAuthClientBase
 	 * @param assume_www_encoded boolean Read OAuthClientResponse::forceWwwEncodedBodyInterpretation().
 	 * @return An OAuthToken instance with the new temporary request credentials.
 	 **/
-	public function _getTempToken($request_token_url, array $params = array(), $assume_www_encoded = false)
+	public function _getTempToken($request_token_url, array $params = array(), $assume_www_encoded = false, $method = 'GET')
 	{
-		// :TODO: We only support POST for request_temp_token...
-		$req = $this->createPostRequest($request_token_url, $params);
+    if ($method === 'GET') {
+		  $req = $this->createGetRequest($request_token_url, $params);
+    }
+    else {
+		  $req = $this->createPostRequest($request_token_url, $params);
+    }
 
 		$response = $this->executeRequest($req);
 
