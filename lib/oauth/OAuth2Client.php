@@ -223,6 +223,11 @@ class OAuth2CurlClient extends OAuth2ClientBase
 	{
 		$query_str = OAuthShared::joinParametersMap($get_params);
 
+		if (preg_match('~box\.com/~i', $url, $match ))	// if request box.com, token access by header only
+		{
+			$query_str='';
+		}
+
 		if(!empty($query_str))
 		{
 			$url .= (strpos($url, '?') === false ? '?' : '&'); // this feels hacky...
@@ -654,6 +659,12 @@ class OAuth2ClientRequest extends OAuth2Request
 
 			// :TODO: find out whether this really is not supposed to be urlEncoded.
 			$result .= $key . '="' . $value . '", ';
+		}
+		if (preg_match('~box\.com/~i', $this->request_url, $match ))
+		{
+			// Box.com authentication header.
+			$result = 'Bearer '  . $this->params_header['token'];
+			return $result;
 		}
 
 		return rtrim($result, ', ');
