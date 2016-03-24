@@ -187,6 +187,35 @@ class OAuthShared
 	 **/
 	public static function splitHttpResponse($_except_class, $response, array &$headers, &$body, &$status_code)
 	{
+
+		// Unwrap redirect or proxy header from response stream except 200 OK.
+		$try_again = FALSE;
+		$max_loop=10;
+		do {
+			if (preg_match('~^HTTP/(\d\.\d)\s+(\d+)\s+([ \w]+)\r?\n~i', $response, $match ))
+			{
+				// Get next response stream header.
+				$headers_end = strpos($response, "\r\n\r\n");
+
+				if ($match[2] == '200' && rtrim($match[3]) == 'OK' ) {
+					$try_again = FALSE;
+				}
+				else {
+					if ($headers_end === FALSE) {
+						$try_again = FALSE;
+					}
+					else {
+						$response = substr($response, $headers_end + 4);
+						$try_again = TRUE;
+					}
+				}
+			}
+			else {
+				$try_again = FALSE;
+			}
+			--$max_loop;
+		} while ($try_again && $max_loop>0);
+
 		// ignore leading proxy response headers:
 		// patch by D. of SC 2012-09-15
 		if(preg_match('~^(HTTP/\d\.\d\s+\d+\s+[ \w]+\r?\n\r?\n)HTTP/~i', $response, $match))
